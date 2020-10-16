@@ -10,11 +10,11 @@ using SuperheroProject.Models;
 
 namespace SuperheroProject.Controllers
 {
-    public class SuperherosController : Controller
+    public class SuperheroesController : Controller
     {
         private ApplicationDbContext _db;
 
-        public SuperherosController(ApplicationDbContext db)
+        public SuperheroesController(ApplicationDbContext db)
         {
             _db = db;
         }
@@ -81,7 +81,8 @@ namespace SuperheroProject.Controllers
         // GET: SuperherosController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var result = _db.Superheroes.Find(id);
+            return View(result);
         }
 
         // POST: SuperherosController/Delete/5
@@ -91,6 +92,9 @@ namespace SuperheroProject.Controllers
         {
             try
             {
+                var itemToDelete = _db.Superheroes.Find(id);
+                _db.Superheroes.Remove(itemToDelete);
+                _db.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch

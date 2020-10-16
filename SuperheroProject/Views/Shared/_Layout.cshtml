@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - SuperheroProject</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    
 </head>
 <body>
     <header>
@@ -31,10 +32,12 @@
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+        <div class="bg">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+        </div>
 
     <footer class="border-top footer text-muted">
         <div class="container">
