@@ -69,7 +69,14 @@ namespace SuperheroProject.Controllers
         {
             try
             {
+                var shToUpdate = _db.Superheroes.Find(id);
 
+                shToUpdate.Name = superhero.Name;
+                shToUpdate.AlterEgo = superhero.AlterEgo;
+                shToUpdate.Catchphrase = superhero.Catchphrase;
+                shToUpdate.PrimaryAbility = superhero.PrimaryAbility;
+                shToUpdate.SecondaryAbility = superhero.SecondaryAbility;
+                _db.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch
