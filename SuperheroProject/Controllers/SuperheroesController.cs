@@ -65,21 +65,15 @@ namespace SuperheroProject.Controllers
         // POST: SuperherosController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Superhero superhero)
+        public ActionResult Edit(Superhero superhero)
         {
             try
             {
-                var shToUpdate = _db.Superheroes.Find(id);
-
-                shToUpdate.Name = superhero.Name;
-                shToUpdate.AlterEgo = superhero.AlterEgo;
-                shToUpdate.Catchphrase = superhero.Catchphrase;
-                shToUpdate.PrimaryAbility = superhero.PrimaryAbility;
-                shToUpdate.SecondaryAbility = superhero.SecondaryAbility;
+                _db.Superheroes.Update(superhero);
                 _db.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch(Exception e)
             {
                 return View();
             }
